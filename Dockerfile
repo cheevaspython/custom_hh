@@ -1,4 +1,3 @@
-
 FROM python:3.11
 
 ARG ENV
@@ -23,7 +22,7 @@ RUN poetry config virtualenvs.create false \
 
 COPY . /fast_api_hh
 
-EXPOSE 8000
+EXPOSE 8088
 RUN adduser --disabled-password docker-admin
 USER docker-admin 
 

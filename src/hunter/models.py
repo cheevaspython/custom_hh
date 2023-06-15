@@ -29,7 +29,7 @@ hunter_site = Table(
 contender = Table(
     'contender',
     metadata,
-    Column("id", Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)),
+    Column("id", Integer, primary_key=True),
     Column("hunter_site_id", Integer, ForeignKey(hunter_site.c.id)),
     Column("name", String, nullable=False),
     Column("birthday", Date),

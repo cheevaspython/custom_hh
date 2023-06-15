@@ -6,7 +6,7 @@ from sqlalchemy import pool
 from alembic import context
 
 from src.hunter.models import metadata
-from config import DB_PORT, DB_HOST, DB_PASSWORD, \
+from src.config import DB_PORT, DB_HOST, DB_PASS, \
     DB_USER, DB_NAME
 
 # this is the Alembic Config object, which provides
@@ -15,10 +15,10 @@ config = context.config
 
 
 section = config.config_ini_section
-if DB_NAME and DB_HOST and DB_PASSWORD and DB_PORT and DB_USER:
+if DB_NAME and DB_HOST and DB_PASS and DB_PORT and DB_USER:
     config.set_section_option(section, "DB_NAME", DB_NAME)
     config.set_section_option(section, "DB_USER", DB_USER)
-    config.set_section_option(section, "DB_PASSWORD", DB_PASSWORD)
+    config.set_section_option(section, "DB_PASS", DB_PASS)
     config.set_section_option(section, "DB_HOST", DB_HOST)
     config.set_section_option(section, "DB_PORT", DB_PORT)
 
