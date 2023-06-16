@@ -26,5 +26,23 @@ services:
     volumes:
       - postgres_fast_hh:/var/lib/postgresql/data/
 
+  redis:
+    image: redis:7.0.5-alpine
+    hostname: redis
+
+  worker:
+    build:
+      context: .
+    hostname: worker
+    entrypoint: celery
+    env_file: .env
+    command: celery -A src.tasks:celery worker --loglevel=info --concurrency 1 -E 
+    volumes:
+      - .:/fast_api_hh
+    links:
+      - redis
+    depends_on:
+      - redis
+
 volumes:
   postgres_fast_hh:
