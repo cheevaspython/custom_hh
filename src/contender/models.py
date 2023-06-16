@@ -1,10 +1,12 @@
-import uuid, enum
+import enum
+
 from datetime import datetime
 
-from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy import Date, Enum, Float, MetaData, Table, Column, \
     Integer, String, TIMESTAMP, ForeignKey
-                                    
+
+from src.hunters.models import hunter_site
+
 metadata = MetaData()
 
 
@@ -18,13 +20,6 @@ class CodeStyle(enum.Enum):
     c = 'Си'
     rust = 'Раст'
 
-
-hunter_site = Table(
-    'hunter_site',
-    metadata,
-    Column("id", Integer, primary_key=True),
-    Column("name", String, nullable=False),
-)
 
 contender = Table(
     'contender',
@@ -41,27 +36,3 @@ contender = Table(
     Column("owned_tech", String, nullable=False),
     Column("selery", Float, nullable=False),
 )
-
-hr_search = Table(
-    'hr_search',
-    metadata,
-    Column("id", Integer, primary_key=True),
-    Column("name", String, nullable=False),
-    Column("hunter_site_id", Integer, ForeignKey(hunter_site.c.id)),
-    Column("experience", Float, nullable=False),
-    Column("owned_tech", String, nullable=False),
-    Column("selery", Float, nullable=False),
-)
-
-employer = Table(
-    'employer',
-    metadata,
-    Column("id", Integer, primary_key=True),
-    Column("name", String, nullable=False),
-    Column("hunter_site_id", Integer, ForeignKey(hunter_site.c.id)),
-    Column("hr_search_id", Integer, ForeignKey(hr_search.c.id)),
-)
-
-
-
-

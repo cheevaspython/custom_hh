@@ -5,7 +5,7 @@ from sqlalchemy import pool
 
 from alembic import context
 
-from src.hunter.models import metadata
+from src.hunters.models import metadata
 from src.config import DB_PORT, DB_HOST, DB_PASS, \
     DB_USER, DB_NAME
 
